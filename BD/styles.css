@@ -1,0 +1,219 @@
+/*Selector global, con él estamos quitando el margen y padding por defecto de todos los elementos en la pagina*/
+*::after,
+*::before,
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Con este selector de elemento, establecemos el aspecto que tendrá el cuerpo de la página, teniendo un margen de 0 arriba y abaja, y automatico para los costados, con esto, centramos los elementos que vayan dentro del cuerpo. Se le añade un ancho máximo de 1200 px, ademas de elegir una fuente y color de fuente*/
+body{
+    margin: 0 auto;
+    max-width: 1200px;
+    font-family: 'Lato';
+    color: #333;
+}
+
+/*Con este selector, decimos que la clase icon-cart tendrá un alto y ancho de 40px ademas de un color de linea negro, esta clase es un "dibujo" SVG que representa una bolsa*/
+.icon-cart{
+    width: 40px;
+    height: 40px;
+    stroke: #000;
+}
+
+/*Con la pseudoclase hover, decimos que justo cuando el puntero se coloque sobre el elemento de clase icon-cart, el cursor cambiará*/
+.icon-cart:hover{
+    cursor: pointer;
+}
+
+/*Con este selector, estamos definiendo que todas las imagenes tendran un ancho máximo de 100%*/
+img{
+    max-width: 100%;
+}
+
+/*Header, será el encabezado de la página*/
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 40px 0;
+}
+
+/*El elemento que tenga esta clase, contendrá el icono SVG del carrito*/
+.container-icon{
+    position: relative;
+}
+
+/*Esta clase, será la que contendrá el contador de articulos en el carrito, con las siguientes caracteristicas le damos forma de circulo negro*/
+.count-products{
+    position: absolute;
+    top: 55%;
+    right: 0;
+
+    background-color: #000;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+/*Con este selector, le damos un tamaño de fuente de 12px al elemento con id contador-productos*/
+#contador-productos{
+    font-size: 12px;
+}
+
+/*Con esto le damos estilo a la caja que contiene la lista de productos en el carrito*/
+.container-cart-products{
+    position: absolute;
+    top: 50px;
+    right: 0;
+
+    background-color: #fff;
+    width: 400px;
+    /*El z-index nos permite establecer a que altura en el eje z se colocará el elemento, pudiendo asi colocarlo sobre otros elementos*/
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    
+}
+
+/*Con esto damos estilo a como se colocaran los elementos en cada fila del carrito*/
+.cart-product{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+}
+
+/*Definimos como lucira la informacion del producto en el carrito*/
+.info-cart-product{
+    display: flex;
+    justify-content: space-between;
+    flex: 0.8;
+}
+
+/*Con los siguientes tres selectores de id, definimos como luciran el titulo, el precio y la cantidad de los productos en el carrito*/
+.titulo-producto-carrito{
+    font-size: 20px;
+}
+
+.precio-producto-carrito{
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.cantidad-producto-carrito{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+/*Este identificador es de otro "dibujo" SVG, en este caso un tache que tendrá un tamaño de 25x25 px*/
+.icon-close{
+    width: 25px;
+    height: 25px;
+}
+
+/*Cuando el cursor se coloque sobre ese tache, el cursor cambiara su forma y el tache cambiara a color rojo*/
+.icon-close:hover{
+    stroke: red;
+    cursor: pointer;
+}
+
+/*Esto define como se visualizara el texto en la parte del total del carrito*/
+.cart-total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+/*Esto le da estilo a los h3 dentro de un elemento con identificador cart-total*/
+.cart-total h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/*Con esto definimos el tamaño que tendra el texto que nos muestra el total del carrito*/
+.total-pagar{
+    font-size: 20px;
+    font-weight: 900;
+}
+
+/*Esta clase nos servirá unicamente para definir que el carrito estará escondido*/
+.hidden-cart{
+    display: none;
+}
+
+/*Este será el contenedor de todos productos en la tienda, con esto establecemos como se distribuiran esos productos en la pantalla*/
+.container-items{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/*Con esto estamos declarando que nuestras tarjetas de los productos tendran el borde redondeado*/
+.item{
+    border-radius: 10px;
+}
+
+/*Cuando coloquemos el cursor sobre la tarjeta de un producto, se le colocará una sombra a esta*/
+.item:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+}
+
+/*Definimos como luciran las imagenes de las tarjetas*/
+.item img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    transition: all .5s;
+}
+
+.item figure{
+    overflow: hidden;
+}
+
+/*Cuando coloquemos el cursor sobre la imagen, esta aumentara su tamaño*/
+.item:hover img{
+    transform: scale(1.2);
+}
+
+/*Establecemos como se distribuira la información del producto en la tarjeta*/
+.info-product{
+    padding: 15px 30px;
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/*Definimos el tamaño de fuente que tendrá el precio*/
+.price{
+    font-size: 18px;
+    font-weight: 900;
+}
+
+/*Con esto, le damos estilo al boton de comprar en la tarjeta del producto*/
+.info-product button{
+    border: none;
+    background: none;
+    background-color: #000;
+    color: #fff;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+/*Esta clase la ocupamos en nuestro script de javascript, será el estilo que tendrá el carrito cuando esté vacio*/
+.cart-empty{
+	padding: 20px;
+	text-align: center;
+}
