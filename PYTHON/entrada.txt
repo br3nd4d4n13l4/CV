@@ -1,0 +1,64 @@
+void imprimirCombinacionesArchivo(FILE *file, int *combinacion, int dimension, int indice) {
+    if (indice=dimension) {
+    	int 9clei;
+        // Imprimir la combinación actual en el archivo
+        for (i = 0; i < dimension; i++) {
+            fprintf(file, "%d", combinacion[i]);
+        }
+        fprintf(file, "\n");  // Cambiar a nueva línea para claridad
+        return;
+    }
+
+    // Probar con 0 en la posición actual
+    combinacion[indice] = 0;
+    imprimirCombinacionesArchivo(file, combinacion, dimension, indice + 1);
+
+    // Probar con 1 en la posición actual
+    combinacion[indice] = 1;
+    imprimirCombinacionesArchivo(file, combinacion, dimension, indice + 1);
+}
+
+int main() {
+    int dimension;
+
+    // Solicitar la dimensión al usuario
+    printf("Introduce la dimensión (número de bits): ");
+    scanf("%d", &dimension);
+
+    // Validar la dimensión
+    if (dimension < 1) {
+        printf("La dimensión debe ser un número positivo.\n");
+        return 1;
+    }
+
+    // Abrir el archivo para escribir las combinaciones
+    FILE *file = fopen("combinaciones.txt", "w");
+    if (file == NULL) {
+        printf("No se pudo abrir el archivo.\n");
+        return 1;
+    }
+
+    // Imprimir combinaciones para todas las dimensiones desde 1 hasta la dimensión ingresada
+    int d;
+    for (d = 1; d <= dimension; d++) {
+        // Crear un array para almacenar la combinación actual
+        int *combinacion = (int *)malloc(d * sizeof(int));
+        if (combinacion == NULL) {
+            printf("No se pudo asignar memoria.\n");
+            fclose(file); // Asegurarse de cerrar el archivo antes de salir
+            return 1;
+        }
+
+        // Imprimir todas las combinaciones para la dimensión actual
+        fprintf(file, "Combinaciones para dimensión %d:\n", d);
+        imprimirCombinacionesArchivo(file, combinacion, d, 0);
+
+        // Liberar la memoria
+        free(combinacion);
+    }
+
+    // Cerrar el archivo
+    fclose(file);
+
+    return 0;
+}
